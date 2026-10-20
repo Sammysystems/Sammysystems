@@ -2,7 +2,7 @@
   <img src="banner.svg" width="100%" alt="Sammy Systems"/>
 </p>
 
-<h3 align="center">We build the systems that stop Nigerian businesses losing work to manual follow-up.</h3>
+<h3 align="center">We build the systems that stop businesses losing work to manual follow-up.</h3>
 
 <p align="center">
   Lead capture · no-show recovery · payment verification · ops desks<br/>
