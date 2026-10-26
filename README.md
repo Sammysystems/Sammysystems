@@ -46,7 +46,7 @@ A single `<script>` tag adds a concierge that answers from committed facts and c
 
 **The hard part** — letting a model talk to customers while guaranteeing it never quotes a price that isn't on the rate card.
 
-**How I solved it** — retrieval over committed facts, plus a code-level rate-card check that catches any off-card figure and corrects it before it reaches the customer. Bookings require a valid email, then mint a reference, notify both sides, and hand off to WhatsApp. **33 e2e checks**, iframe-isolated, no database.
+**How I solved it** — retrieval over committed facts, plus a code-level rate-card check that catches any off-card figure and corrects it before it reaches the customer. Bookings require a valid email, then mint a reference, notify both sides, and hand off to WhatsApp. An end-to-end booking suite, iframe-isolated, no database.
 
 `React 19 · Vite · Gemini embeddings · OpenRouter/NVIDIA fallback · Resend`
 
