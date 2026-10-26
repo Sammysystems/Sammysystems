@@ -1,52 +1,88 @@
-![Sammy Systems](./banner.svg)
+![AI Automation Engineer](./banner.svg)
 
-## We build operating systems for service businesses, so they grow and scale without manual work.
+**AI Automation Engineer** — I build agents, LLM integrations, and workflow automation that ship.
 
-Ops desks, concierges, no-show recovery, payment gates.
+Uyo, Nigeria (WAT, UTC+1) · Remote worldwide
+
+[Email](mailto:ubaniekan29@gmail.com) · [X](https://x.com/Psarmhye) · [GitHub](https://github.com/Sammysystems)
 
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white) ![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=black) ![Node.js](https://img.shields.io/badge/Node.js-339933?logo=nodedotjs&logoColor=white) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?logo=postgresql&logoColor=white) ![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-06B6D4?logo=tailwindcss&logoColor=white) ![Vercel](https://img.shields.io/badge/Vercel-000000?logo=vercel&logoColor=white)
 
 ---
 
-## The problem
+## What I build
 
-Businesses rarely lose work in the office. They lose it in the gaps — the lead answered nine hours late, the slot nobody recovered, the "I paid" nobody checked.
+- **AI agents and LLM integrations** — model APIs, embeddings, structured outputs, fallbacks, and guardrails so the model cannot invent the things that matter.
+- **Workflow automation** — event-driven pipelines, webhooks, SLA clocks, and handoffs across CRM, calendar, WhatsApp, and email.
+- **Production discipline** — tests, CI, failure modes, capacity budgets, and degradation plans. Ship small, measure, then widen.
 
-## What we build
+## Selected builds
 
-|  | System | The failure it prevents |
-|---|---|---|
-| **Ops desk** | Leads, jobs, follow-ups and dispatch on one screen with SLA clocks | Work sits unanswered until the customer gives up |
-| **Booking concierge** | An embeddable desk that answers from committed facts and captures real bookings | A chatbot invents a price and you never hear about it |
-| **No-show recovery** | Automated reactivation sequences and slot recovery | An empty chair costs more than the email that would have filled it |
-| **Payment verification** | Receipt read, verified against the order, owner notified | "I paid" with nothing to check it against |
+Each one is a working system, not a pitch. The interesting part is never the happy path.
 
-## Selected work
+### [job-finder-bot](https://github.com/Sammysystems/job-finder-bot) — agentic job-search pipeline
 
-### [realestate-portal](https://github.com/Sammysystems/realestate-portal) — Ops desk
-A lead waits nine hours for a first reply; a land search stalls eighteen days before anyone notices. Every lead carries a **4-hour SLA clock**, every stalled deal is flagged by stage day-limit, and the auto first-reply is assembled from the database row — so a hallucinated price is structurally impossible here, not unlikely. 7 board views, and an email dispatch history that logs the failures too.
+Seven free job sources in, a small ranked shortlist out, then grounded outreach drafts and a human approval loop — running on a schedule with no laptop open.
 
-`React 19 · Vite · Tailwind 4 · Postgres · Vercel` · [Live demo →](https://realestate-portal-ten.vercel.app)
+**The hard part** — job feeds are noisy, and "AI outreach" usually invents things. The system had to keep only genuinely relevant roles and write emails grounded strictly in facts it could cite.
 
-### [dmi-concierge](https://github.com/Sammysystems/dmi-concierge) — Booking concierge
-An embeddable desk for a photography studio that drops in as a single `<script>` tag. **Money never comes from the model** — any reply stating a naira figure that isn't on the committed rate card is caught in code and corrected. A booking only completes with a valid email; then it mints a reference, emails both sides and hands off to WhatsApp. No database, 33 e2e checks, iframe-isolated.
+**How I solved it** — multi-source ingestion with normalization and fuzzy dedupe; a scored gate that rejects off-scope titles; deterministic, evidence-bound drafting (no model arithmetic anywhere near a claim); a Telegram approval loop; and GitHub Actions cron so it runs unattended.
+
+`TypeScript · Node · VoltAgent · Zod · Telegram Bot API · GitHub Actions`
+
+### [proofgate](https://github.com/Sammysystems/proofgate) — payment verification without a payment gateway
+
+A Telegram bot reads the customer's bank-transfer receipt — photo, PDF, or screenshot — and returns **CONFIRMED** or **HOLD**.
+
+**The hard part** — a receipt image is not a payment. The system had to make a trust decision from a picture and fail in the safe direction.
+
+**How I solved it** — Gemini Vision extracts amount and reference; code verifies them against the order; a three-tier OCR fallback covers degraded images; and a deterministic gate the model cannot override decides the outcome. **21/21 tests**, with code and security reviews committed.
+
+`Google Apps Script · Gemini Vision · Telegram`
+
+### [dmi-concierge](https://github.com/Sammysystems/dmi-concierge) — embeddable booking concierge
+
+A single `<script>` tag adds a concierge that answers from committed facts and captures real bookings.
+
+**The hard part** — letting a model talk to customers while guaranteeing it never quotes a price that isn't on the rate card.
+
+**How I solved it** — retrieval over committed facts, plus a code-level rate-card check that catches any off-card figure and corrects it before it reaches the customer. Bookings require a valid email, then mint a reference, notify both sides, and hand off to WhatsApp. **33 e2e checks**, iframe-isolated, no database.
 
 `React 19 · Vite · Gemini embeddings · OpenRouter/NVIDIA fallback · Resend`
 
-### [clearsmile-patient-reactivation](https://github.com/Sammysystems/clearsmile-patient-reactivation) — No-show recovery
-Scans six months of overdue patients and runs a **day 0 / 7 / 14** reactivation sequence, with self-serve booking, day-before reminders, no-show recovery and a staff handoff queue. Outbound email is opt-in behind an `EMAIL_LIVE` guard, capped at `MAX_EMAILS_PER_RUN`, so a misconfigured deploy cannot blast a patient list. Built in public over 30 days.
+### [lead-followup](https://github.com/Sammysystems/lead-followup) + [outbound-campaign](https://github.com/Sammysystems/outbound-campaign) — lead operations that don't lose the follow-up
 
-`React 19 · TypeScript · Postgres · Resend · Vercel`
+**The hard part** — the first reply is easy. The leak is everything after it: the lead nobody chased, the deal that stalled, the sequence that quietly stopped.
 
-### [proofgate](https://github.com/Sammysystems/proofgate) — Payment verification without a payment gateway
-A Telegram bot reads the customer's bank-transfer receipt with Gemini Vision — photo, PDF or screenshot — extracts amount and reference, verifies them against the order, and returns **CONFIRMED** or **HOLD**, then emails the owner. Three-tier OCR fallback. **21/21 tests**; code review, security review and ship-check all committed. Runs on free tiers.
+**How I solved it** — every lead on a 4-hour SLA clock; the auto first-reply assembled from real property facts; stalled deals flagged by stage day-limit; event-driven enrollment through webhooks; and one drip email per scheduler tick, with a dashboard to manage sequences. Serverless plus Postgres, run on free tiers.
 
-`Google Apps Script · Telegram · Gemini Vision`
+`Node · TypeScript · PostgreSQL (InsForge) · Vercel · Gmail SMTP · cron`
 
-## How we work
+## How I work
 
-Every system goes through a production gate before it ships: non-functional requirements, a capacity budget, an FMEA, a degradation matrix, load tests to the knee, and a launch decision that is allowed to say no. One of our builds was **blocked at its own gate with six named blockers** rather than handed a green light. Readiness docs, runbooks and raw load-test output live in the repos.
+- **Guardrails before autonomy.** When a wrong answer is expensive, the model proposes and code decides.
+- **Model where it helps, code where correctness matters.** No model arithmetic in prices or payments.
+- **Tests and CI are part of the build**, not a later phase.
+- **Small ships.** One integration at a time, measured, then widened.
 
-## Available for
+## Stack
 
-Full-time engineering roles · contract builds · system audits — Case studies and private work available on request.
+- **Languages** — TypeScript, JavaScript, SQL
+- **Frontend** — React 19, Vite, Tailwind 4
+- **Backend & data** — Node.js, PostgreSQL, serverless on Vercel, REST, webhooks
+- **AI & LLM** — Gemini (Vision, embeddings), OpenAI, Claude, OpenRouter/NVIDIA fallback, prompt design, structured outputs
+- **Automation** — n8n, Make, Zapier concepts, cron scheduling, GitHub Actions
+- **Integrations** — Telegram Bot API, WhatsApp Business API, Gmail SMTP, Resend, Google Drive/Sheets
+- **Practice** — Vitest and e2e tests, CI, FMEA, capacity budgets, load testing, runbooks
+
+## Build-in-public
+
+These are reference builds I ship in public to pressure-test real operational problems — not client engagements. Where a number appears, it is a test count or a measured result from the repo, not a customer metric.
+
+## Open to
+
+Full-time remote roles in **AI automation, AI agents, LLM integration, and workflow automation**. Based in WAT (UTC+1), comfortable overlapping EU hours and US-East mornings.
+
+---
+
+[Email](mailto:ubaniekan29@gmail.com) · [X](https://x.com/Psarmhye) · [GitHub](https://github.com/Sammysystems)

@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-label="Sammy Systems">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-label="AI Automation Engineer">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#0B1D3D"/>
@@ -20,21 +20,25 @@
     <circle cx="1050" cy="110" r="6" fill="#0066FF"/>
   </g>
 
-  <text x="76" y="148"
+  <text x="76" y="140"
         font-family="'Plus Jakarta Sans','Segoe UI',system-ui,-apple-system,sans-serif"
-        font-size="72" font-weight="800" letter-spacing="-2.5" fill="#FFFFFF">SAMMY SYSTEMS</text>
+        font-size="63" font-weight="800" letter-spacing="-2" fill="#FFFFFF">AI AUTOMATION ENGINEER</text>
 
-  <text x="78" y="196"
+  <text x="78" y="188"
         font-family="'Plus Jakarta Sans','Segoe UI',system-ui,-apple-system,sans-serif"
         font-size="20" font-weight="600" fill="#0066FF" letter-spacing="6">ENGINEERED DIFFERENTLY</text>
 
-  <rect x="78" y="214" width="240" height="3" fill="url(#rule)"/>
+  <rect x="78" y="206" width="240" height="3" fill="url(#rule)"/>
 
-  <text x="78" y="268"
+  <text x="78" y="260"
         font-family="'Plus Jakarta Sans','Segoe UI',system-ui,-apple-system,sans-serif"
         font-size="34" font-weight="800" fill="#0066FF" letter-spacing="0.5">I BUILD. I SHIP. I DEPLOY.</text>
 
-  <text x="78" y="322"
+  <text x="78" y="314"
         font-family="'Plus Jakarta Sans','Segoe UI',system-ui,-apple-system,sans-serif"
-        font-size="27" font-weight="500" fill="#9FB3CE">Operating systems for service businesses</text>
+        font-size="26" font-weight="500" fill="#9FB3CE">Agents · LLM integrations · Workflow automation</text>
+
+  <text x="1124" y="332" text-anchor="end"
+        font-family="'Plus Jakarta Sans','Segoe UI',system-ui,-apple-system,sans-serif"
+        font-size="14" font-weight="600" fill="#6E86A8" letter-spacing="2.5">REMOTE · WAT (UTC+1)</text>
 </svg>
